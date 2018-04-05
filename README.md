@@ -7,10 +7,11 @@ Instructions (Linux):
 ```bash
 $ git clone https://github.com/arnesor/openssl-example-conan.git
 $ mkdir build && cd build
-$ cmake ../openssl-example-conan -DCMAKE_BUILD_TYPE=Release
+$ cmake ../openssl-example-conan -DCMAKE_BUILD_TYPE=Debug
 $ cmake --build .
 $ cd bin
 $ ./openssl-example
+$ ./openssl-test
 ```
 
 Instructions (Windows):
@@ -19,8 +20,9 @@ Instructions (Windows):
 $ git clone https://github.com/arnesor/openssl-example-conan.git
 $ mkdir build && cd build
 $ cmake ../openssl-example-conan -G "Visual Studio 14 2015 Win64"
-$ cmake --build . --config Release
+$ cmake --build . --config Debug
 $ cd bin
 $ openssl-example
+$ openssl-test
 ```
 

@@ -48,6 +48,8 @@ int main(int argc, char* argv[])
     rc = PEM_write_bio_PrivateKey(pem3.get(), pkey.get(), NULL, NULL, 0, NULL, NULL);
     assert(rc == 1);
 
+    cout << "Key pair generated in current directory.\n";
+
     cout << "SSL library version: " << SSLeay_version(SSLEAY_VERSION) << "\n";
     return 0;
 }
