@@ -1,9 +1,12 @@
 #include "OpensslWrapper.h"
+#include <memory>
 #include <stdexcept>
+#include <openssl/evp.h>
 #include <openssl/rand.h>
 
+// The source code is based on https://wiki.openssl.org/index.php/EVP_Symmetric_Encryption_and_Decryption
 
-
+typedef unsigned char byte;
 using EVP_CIPHER_CTX_free_ptr = std::unique_ptr<EVP_CIPHER_CTX, decltype(&::EVP_CIPHER_CTX_free)>;
 
 OpensslWrapper::OpensslWrapper()
@@ -27,7 +30,7 @@ void OpensslWrapper::gen_params()
       throw std::runtime_error("RAND_bytes for iv failed");
 }
 
-void OpensslWrapper::aes_encrypt(const secure_string& ptext, secure_string& ctext) const
+void OpensslWrapper::aes_encrypt(const std::string& ptext, std::string& ctext) const
 {
     EVP_CIPHER_CTX_free_ptr ctx(EVP_CIPHER_CTX_new(), ::EVP_CIPHER_CTX_free);
     int rc = EVP_EncryptInit_ex(ctx.get(), EVP_aes_256_cbc(), NULL, key, iv);
@@ -52,7 +55,7 @@ void OpensslWrapper::aes_encrypt(const secure_string& ptext, secure_string& ctex
 }
 
 
-void OpensslWrapper::aes_decrypt(const secure_string& ctext, secure_string& rtext) const
+void OpensslWrapper::aes_decrypt(const std::string& ctext, std::string& rtext) const
 {
     EVP_CIPHER_CTX_free_ptr ctx(EVP_CIPHER_CTX_new(), ::EVP_CIPHER_CTX_free);
     int rc = EVP_DecryptInit_ex(ctx.get(), EVP_aes_256_cbc(), NULL, key, iv);
