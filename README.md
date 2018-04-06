@@ -19,8 +19,8 @@ Instructions (Windows):
 ```bash
 $ git clone https://github.com/arnesor/openssl-example-conan.git
 $ mkdir build && cd build
-$ cmake ../openssl-example-conan -G "Visual Studio 14 2015 Win64"
-$ cmake --build . --config Debug
+$ cmake ../openssl-example-conan -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Debug
+$ cmake --build .
 $ cd bin
 $ openssl-example
 $ openssl-test

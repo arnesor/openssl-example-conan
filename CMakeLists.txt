@@ -20,7 +20,8 @@ conan_cmake_run(CONANFILE conanfile.txt
 
 find_package(GTest REQUIRED)
 
-add_library(OpensslWrapper OpensslWrapper.cpp)
+# .h-file add to get it sorted under Header Files in Visual Studio
+add_library(OpensslWrapper OpensslWrapper.cpp OpensslWrapper.h)
 target_link_libraries(OpensslWrapper CONAN_PKG::OpenSSL)
 
 add_executable(openssl-example main.cpp)
@@ -28,4 +29,3 @@ target_link_libraries(openssl-example CONAN_PKG::OpenSSL)
 
 add_executable(openssl-test OpensslWrapperTest.cpp)
 target_link_libraries(openssl-test OpensslWrapper GTest::GTest GTest::Main)
-
