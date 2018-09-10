@@ -1,5 +1,5 @@
 [requires]
-OpenSSL/1.0.2l@conan/stable
+OpenSSL/1.0.2o@conan/stable
 gtest/1.8.0@bincrafters/stable
 
 [generators]
